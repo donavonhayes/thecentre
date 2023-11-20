@@ -1,5 +1,5 @@
 import './App.css'
-import Create from './components/create'
+import Create from './Components/create'
 import Read from './Components/read'
 import Update from './Components/update'
 import { Route, Routes } from 'react-router-dom'
