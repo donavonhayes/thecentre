@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+body {
+  background-color: #212121;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #212121;
+  color: whitesmoke;
+  flex-direction: column;
+}
+
+.main-header {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.create-form label {
+  color: whitesmoke;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+}
+
+table {
+  color: whitesmoke;
+}
