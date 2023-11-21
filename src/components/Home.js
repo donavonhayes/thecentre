@@ -10,4 +10,3 @@ export default function Home() {
     // console.log("onSubmit event", event);
     navigate('/quiz')
   }
-
