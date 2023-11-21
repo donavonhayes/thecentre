@@ -1,16 +1,6 @@
 import React from 'react'
 // import { usersAPI } from '../rest/Endpoint';
 import { useNavigate } from 'react-router-dom'
-import redbull from './assets/redbull.jpg'
-import ferrari from './assets/ferrari.jpg'
-import mercedes from './assets/mercedes.jpg'
-import alpine from './assets/alpine.jpg'
-import mclaren from './assets/mclaren.jpg'
-import alfaromeo from './assets/alfaromeo.png'
-import haas from './assets/haas.jpg'
-import alphatauri from './assets/alphatauri.jpg'
-import astonmartin from './assets/astonmartin.jpg'
-import williams from './assets/williams.jpg'
 
 export default function Home() {
   const navigate = useNavigate()

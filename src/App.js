@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './App.css'
 import { Route, Routes, useNavigate } from 'react-router-dom'
-import { NavBar } from './Components/navbar'
+import { NavBar } from './Components/NavBar'
 import Home from './Components/Home'
 import Quiz from './Components/Quiz'
 import MusicPlayer from './Components/MusicPlayer'
