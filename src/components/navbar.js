@@ -1,22 +1,35 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import React from 'react'
+import { Container, Nav, Navbar } from 'react-bootstrap'
+// import F1Logo from './assets/F1LOGO.png';
+import F1Logo2 from './assets/f1_logo.svg'
 
-function NavBar() {
+export const NavBar = () => {
   return (
-    <Navbar bg="light" expand="sm">
-      <Container>
-        <Navbar.Brand href="/">React-CRUD</Navbar.Brand>
-        <Navbar.Toggle aria-controls="react-crud-navbar" />
-        <Navbar.Collapse id="react-crud-navbar">
-          <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/read">Entry List</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-  );
+    <>
+      <Navbar
+        className="color-nav rounded navbar font-face-f1r"
+        variant="dark"
+        expand="sm"
+      >
+        <Container>
+          <Navbar.Brand href="/">
+            <img
+              alt="formula 1"
+              src={F1Logo2}
+              width="100"
+              height="25"
+              className=""
+            />{' '}
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/scorelist">Score List</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </>
+  )
 }
-
-export default NavBar;

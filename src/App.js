@@ -1,20 +1,100 @@
+import React, { useEffect, useState } from 'react'
 import './App.css'
-import Create from './Components/create'
-import Read from './Components/read'
-import Update from './Components/update'
-import { Route, Routes } from 'react-router-dom'
-import NavBar from './Components/navbar'
+import { Route, Routes, useNavigate } from 'react-router-dom'
+import { NavBar } from './Components/navbar'
+import Home from './Components/Home'
+import Quiz from './Components/Quiz'
+import MusicPlayer from './Components/MusicPlayer'
+import Footer from './Components/footer'
+import ScoreList from './Components/ScoreList'
+import { usersAPI } from './rest/Endpoint'
+import QuizRetake from './Components/QuizRetake'
 
 export default function App() {
+  const [APIData, setAPIData] = useState([])
+  const [score, setScore] = useState(0)
+  const [username, setUserName] = useState('')
+
+  let navigate = useNavigate()
+
+  const getScores = async () => {
+    const scoresFromServer = await usersAPI.get()
+    setAPIData(scoresFromServer)
+  }
+
+  //todo https://dev.to/will_yama/how-to-render-responses-96c
+
+  useEffect(() => {
+    getScores()
+  }, [])
+  // console.log('first fetching scores:', APIData);
+
+  const onSubmit = (event) => {
+    event.preventDefault()
+    console.log('onSubmit event', event)
+
+    usersAPI.post([username, score])
+    setUserName('')
+    setScore('')
+    navigate('/scorelist')
+  }
+
+  function handleChange(event) {
+    console.log(' handleChange name', event.target.name)
+    console.log('userName handleChange value', event.target.value)
+    setUserName(`${event.target.name}${event.target.value}`)
+  }
+
   return (
-    <div className="main container col-8">
+    <>
       <NavBar />
-      <h2 className="main-header">React Crud Operations App</h2>
-      <Routes>
-        <Route path="/" element={<Create />} />
-        <Route path="/read" element={<Read />} />
-        <Route path="/update" element={<Update />} />
-      </Routes>
-    </div>
+      <div className="wrapper container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/quiz"
+            element={
+              <Quiz
+                score={score}
+                setScore={setScore}
+                APIData={APIData}
+                setAPIData={setAPIData}
+                onSubmit={onSubmit}
+                username={username}
+                setUserName={setUserName}
+                handleChange={handleChange}
+              />
+            }
+          />
+          <Route
+            path="/scorelist"
+            element={<ScoreList APIData={APIData} setAPIData={setAPIData} />}
+          />
+          <Route
+            path="/quiz-retake"
+            element={
+              <QuizRetake
+                APIData={APIData}
+                getScores={getScores}
+                setAPIData={setAPIData}
+                onSubmit={onSubmit}
+                handleChange={handleChange}
+                username={username}
+                setUserName={setUserName}
+                score={score}
+                setScore={setScore}
+              />
+            }
+          />
+        </Routes>
+        <br />
+      </div>
+      <div className="fixed-bottom container mb-5">
+        <MusicPlayer />
+      </div>
+      <div>
+        <Footer />
+      </div>
+    </>
   )
 }
